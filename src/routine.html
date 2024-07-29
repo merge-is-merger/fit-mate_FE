@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitmate</title>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <link rel="stylesheet" href="routine.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap">
+
+</head>
+<body>
+    <!-------------about------->
+    <div id="header" class="section-container">
+
+        <div class="container">
+            <nav>
+                <ul id="sidemenu">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="profile.html">프로필</a></li>
+                    <li><a href="routine.html">마이루틴</a></li>
+                    <li><a href="challenge.html">챌린지</a></li>
+                    <li><a href="community.html">커뮤니티</a></li>
+                </ul>
+                <a href="#header"><img src="images/fitmate.png" class="logo"></a>
+            
+            </nav>
+
+        </div>
+
+
+    </div>
+    <!-------------about------->
+    <div id="pageContainer">
+        <div id="blocklyDiv"></div>
+        <div id="outputPane">
+          <h2>생성된 운동 루틴</h2>
+          <pre id="generatedCode"><code></code></pre>
+          <div id="output"></div>
+        </div>
+      </div>
+  
+      <xml id="toolbox" style="display: none">
+        <category name="가슴 운동" colour="#5CA699">
+          <block type="chest_exercise"></block>
+        </category>
+        <category name="등 운동" colour="#5C81A6">
+          <block type="back_exercise"></block>
+        </category>
+        <category name="어깨 운동" colour="#A65C81">
+          <block type="shoulder_exercise"></block>
+        </category>
+        <category name="팔 운동" colour="#FFFA99">
+          <block type="arm_exercise"></block>
+        </category>
+        <category name="하체 운동" colour="#E48F55">
+          <block type="lower_body_exercise"></block>
+        </category>
+        <category name="휴식" colour="#FF6B6B">
+          <block type="rest_period"></block>
+        </category>
+        <script src="routine.js"></script>
+      </xml>
+  
+      <script>
+        var workspace = Blockly.inject('blocklyDiv', {
+          toolbox: document.getElementById('toolbox'),
+          scrollbars: true,
+          trashcan: true,
+          zoom: {
+            controls: true,
+            wheel: true,
+            startScale: 1.0,
+            maxScale: 3,
+            minScale: 0.3,
+            scaleSpeed: 1.2
+          }
+        });
+  
+        Blockly.Blocks['chest_exercise'] = {
+          init: function() {
+            this.appendDummyInput()
+                .appendField("가슴 운동")
+                .appendField(new Blockly.FieldDropdown([
+                  ["체스트 프레스", "BENCH_PRESS"],
+                  ["인클라인 푸시업", "PUSH_UP"],
+                  ["덤벨 플라이", "DUMBBELL_FLY"]
+                ]), "CHEST_EXERCISE");
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(230);
+            this.setTooltip("가슴 운동을 선택하세요");
+            this.setHelpUrl("");
+          }
+        };
+  
+        Blockly.Blocks['back_exercise'] = {
+          init: function() {
+            this.appendDummyInput()
+                .appendField("등 운동")
+                .appendField(new Blockly.FieldDropdown([
+                  ["풀업", "PULL_UP"],
+                  ["랫풀다운", "LAT_PULLDOWN"],
+                  ["로우", "ROW"]
+                ]), "BACK_EXERCISE");
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(160);
+            this.setTooltip("등 운동을 선택하세요");
+            this.setHelpUrl("");
+          }
+        };
+  
+        Blockly.Blocks['shoulder_exercise'] = {
+          init: function() {
+            this.appendDummyInput()
+                .appendField("어깨 운동")
+                .appendField(new Blockly.FieldDropdown([
+                  ["덤벨 킥 백", "DUMBEL_KICKBACK"],
+                  ["숄더 프레스", "SHOULDER_PRESS"],
+                  ["리버스 펙 덱 플라이", "REVERSE_PECK_DECK_FLY"]
+                ]), "BACK_EXERCISE");
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(290);
+            this.setTooltip("어깨 운동을 선택하세요");
+            this.setHelpUrl("");
+          }
+        };
+  
+        Blockly.Blocks['arm_exercise'] = {
+          init: function() {
+            this.appendDummyInput()
+                .appendField("팔 운동")
+                .appendField(new Blockly.FieldDropdown([
+                  ["덤벨 킥 백", "KICK_BACK"],
+                  ["숄더 프레스", "SHOULDER_PRESS"],
+                  ["리버스 펙 덱 플라이", "REVERSE_FLY"]
+                ]), "BACK_EXERCISE");
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(60);
+            this.setTooltip("팔 운동을 선택하세요");
+            this.setHelpUrl("");
+          }
+        };
+  
+        Blockly.Blocks['lower_body_exercise'] = {
+          init: function() {
+            this.appendDummyInput()
+                .appendField("하체 운동")
+                .appendField(new Blockly.FieldDropdown([
+                  ["레그 프레스", "LEG_PRESS"],
+                  ["바벨 스쿼트", "BABEL_SQUAT"],
+                  ["레그 익스텐션", "LEG_EXTENSION"]
+                ]), "BACK_EXERCISE");
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(30);
+            this.setTooltip("하체 운동을 선택하세요");
+            this.setHelpUrl("");
+          }
+        };
+  
+        // 운동 루틴 생성 함수
+        function generateRoutine() {
+          var code = Blockly.JavaScript.workspaceToCode(workspace);
+          document.getElementById('generatedCode').textContent = code;
+        }
+  
+        // 작업 영역 변경 시 운동 루틴 자동 생성
+        workspace.addChangeListener(generateRoutine);
+      </script>
+</body>
+</html>
+
+
+
+<!-- <!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운동 루틴 생성기</title>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <link rel="stylesheet" href="routine.css">
+  </head>
+  <body>
+    <h1>운동 루틴 생성기</h1>
+    <div id="pageContainer">
+      <div id="outputPane">
+        <h2>생성된 운동 루틴</h2>
+        <pre id="generatedCode"><code></code></pre>
+        <div id="output"></div>
+      </div>
+      <div id="blocklyDiv"></div>
+    </div>
+
+    <xml id="toolbox" style="display: none">
+      <category name="가슴 운동" colour="#5CA699">
+        <block type="chest_exercise"></block>
+      </category>
+      <category name="등 운동" colour="#5C81A6">
+        <block type="back_exercise"></block>
+      </category>
+      <category name="어깨 운동" colour="#A65C81">
+        <block type="shoulder_exercise"></block>
+      </category>
+      <category name="팔 운동" colour="#FFFA99">
+        <block type="arm_exercise"></block>
+      </category>
+      <category name="하체 운동" colour="#E48F55">
+        <block type="lower_body_exercise"></block>
+      </category>
+      <category name="휴식" colour="#FF6B6B">
+        <block type="rest_period"></block>
+      </category>
+      <script src="index.js"></script>
+    </xml>
+
+    <script>
+      var workspace = Blockly.inject('blocklyDiv', {
+        toolbox: document.getElementById('toolbox'),
+        scrollbars: true,
+        trashcan: true,
+        zoom: {
+          controls: true,
+          wheel: true,
+          startScale: 1.0,
+          maxScale: 3,
+          minScale: 0.3,
+          scaleSpeed: 1.2
+        }
+      });
+
+      Blockly.Blocks['chest_exercise'] = {
+        init: function() {
+          this.appendDummyInput()
+              .appendField("가슴 운동")
+              .appendField(new Blockly.FieldDropdown([
+                ["체스트 프레스", "BENCH_PRESS"],
+                ["인클라인 푸시업", "PUSH_UP"],
+                ["덤벨 플라이", "DUMBBELL_FLY"]
+              ]), "CHEST_EXERCISE");
+          this.setPreviousStatement(true, null);
+          this.setNextStatement(true, null);
+          this.setColour(230);
+          this.setTooltip("가슴 운동을 선택하세요");
+          this.setHelpUrl("");
+        }
+      };
+
+      Blockly.Blocks['back_exercise'] = {
+        init: function() {
+          this.appendDummyInput()
+              .appendField("등 운동")
+              .appendField(new Blockly.FieldDropdown([
+                ["풀업", "PULL_UP"],
+                ["랫풀다운", "LAT_PULLDOWN"],
+                ["로우", "ROW"]
+              ]), "BACK_EXERCISE");
+          this.setPreviousStatement(true, null);
+          this.setNextStatement(true, null);
+          this.setColour(160);
+          this.setTooltip("등 운동을 선택하세요");
+          this.setHelpUrl("");
+        }
+      };
+
+      Blockly.Blocks['shoulder_exercise'] = {
+        init: function() {
+          this.appendDummyInput()
+              .appendField("어깨 운동")
+              .appendField(new Blockly.FieldDropdown([
+                ["덤벨 킥 백", "DUMBEL_KICKBACK"],
+                ["숄더 프레스", "SHOULDER_PRESS"],
+                ["리버스 펙 덱 플라이", "REVERSE_PECK_DECK_FLY"]
+              ]), "BACK_EXERCISE");
+          this.setPreviousStatement(true, null);
+          this.setNextStatement(true, null);
+          this.setColour(290);
+          this.setTooltip("어깨 운동을 선택하세요");
+          this.setHelpUrl("");
+        }
+      };
+
+      Blockly.Blocks['arm_exercise'] = {
+        init: function() {
+          this.appendDummyInput()
+              .appendField("팔 운동")
+              .appendField(new Blockly.FieldDropdown([
+                ["덤벨 킥 백", "KICK_BACK"],
+                ["숄더 프레스", "SHOULDER_PRESS"],
+                ["리버스 펙 덱 플라이", "REVERSE_FLY"]
+              ]), "BACK_EXERCISE");
+          this.setPreviousStatement(true, null);
+          this.setNextStatement(true, null);
+          this.setColour(60);
+          this.setTooltip("팔 운동을 선택하세요");
+          this.setHelpUrl("");
+        }
+      };
+
+      Blockly.Blocks['lower_body_exercise'] = {
+        init: function() {
+          this.appendDummyInput()
+              .appendField("하체 운동")
+              .appendField(new Blockly.FieldDropdown([
+                ["레그 프레스", "LEG_PRESS"],
+                ["바벨 스쿼트", "BABEL_SQUAT"],
+                ["레그 익스텐션", "LEG_EXTENSION"]
+              ]), "BACK_EXERCISE");
+          this.setPreviousStatement(true, null);
+          this.setNextStatement(true, null);
+          this.setColour(30);
+          this.setTooltip("하체 운동을 선택하세요");
+          this.setHelpUrl("");
+        }
+      };
+
+      // 운동 루틴 생성 함수
+      function generateRoutine() {
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        document.getElementById('generatedCode').textContent = code;
+      }
+
+      // 작업 영역 변경 시 운동 루틴 자동 생성
+      workspace.addChangeListener(generateRoutine);
+    </script>
+  </body>
+</html> -->
