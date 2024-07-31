@@ -1,0 +1,186 @@
+/* General styles for all pages */
+* {
+    font-family: 'Lexend', sans-serif; 
+}
+body {
+    font-family: 'Lexend', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #fafafa;
+}
+
+body {
+
+    margin: 0;
+    padding: 0;
+    background-color: #f3e6ff; 
+}
+
+.section-container {
+    padding: 20px;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1px;
+}
+
+
+#header {
+    position: fixed; /* Fixes the header in place */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff; /* Background color of the header */
+    z-index: 1000; /* Ensure it stays above other content */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+    padding: 20px 20px; /* Padding for the header */
+}
+
+/* Ensure header content is centered and styled */
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    width: 110px;
+    order: 1; 
+    
+}
+
+#sidemenu {
+    list-style: none;
+    display: flex;
+    gap: 30px; 
+    padding: 0;
+    margin: 0;
+}
+
+#sidemenu li {
+    display: inline;
+    position: relative;
+}
+
+#sidemenu a {
+    text-decoration: none;
+    color: #333;
+    position: relative;
+    padding-bottom: 5px; /* Space for the underline */
+    display: block; /* Ensure the pseudo-element covers the full width of the link */
+}
+#sidemenu a:hover {
+    color: #6D31ED; /* Text color on hover */
+}
+
+#sidemenu a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0; /* Line at the bottom of the text */
+    width: 100%; /* Full width of the link */
+    height: 4px; /* Thickness of the line */
+    background-color: transparent; /* Initial color of the line */
+    transition: width 0.6s ease-in, background-color 0.3s ease-in-out; /* Smooth transitions */
+    
+}
+
+#sidemenu a:hover::after {
+    background-color: #6D31ED; /* Color of the line on hover */
+}
+
+/* Styles specific to the login page */
+.login-page {
+    background-color: #402E7A; /* Change to your desired color */
+    height: 100vh; /* Ensure it covers the full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Additional styling for the login form */
+.login-container {
+
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-container h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    
+}
+
+.login-container form div {
+    margin-bottom: 15px;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-container button {
+    padding: 10px 20px;
+    background-color: #6D31ED;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background-color: #430cb3a1;
+    border-style: solid;
+}
+
+.have-account {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 22px;
+    color: #ccced3;
+}
+
+.have-account a {
+    color: #a07dec;
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.have-account a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    #sidemenu {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav .logo {
+        margin-bottom: 10px;
+    }
+
+    .login-container {
+        width: 90%;
+        padding: 15px;
+    }
+}
