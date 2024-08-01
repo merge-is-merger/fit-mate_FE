@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="signup.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap">
-
 </head>
 <body>
     <div id="header" class="section-container">
-
         <div class="container">
             <nav>
                 <ul id="sidemenu">
@@ -20,13 +18,9 @@
                     <li><a href="challenge.html">챌린지</a></li>
                     <li><a href="community.html">커뮤니티</a></li>
                 </ul>
-                <a href="#header"><img src="images/fitmate.png" class="logo"></a>
-            
+                <a href="#header"><img src="images/fitmate.png" class="logo" alt="Logo"></a>
             </nav>
-
         </div>
-        
-
     </div>
 
     <div class="signup-page">
@@ -34,22 +28,47 @@
             <div class="create-account">계정을 만들거나 로그인하세요</div>
             <div class="terms-notice">계정 만들면 약관에 동의하는 것으로 간주됩니다.</div>
            
-            <div class="email-signup-divider">
-                <div class="line"></div>
-                <div class="divider-text">이메일로 가입하기</div>
-                <div class="line"></div>
+            <div class="signup-form">
+                <div class="form-group">
+                    <label for="username">아이디</label>
+                    <input type="text" id="username" name="username" placeholder="아이디를 입력하세요" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">비밀번호 확인</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="비밀번호를 확인하세요" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">성별</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">선택하세요</option>
+                        <option value="male">남성</option>
+                        <option value="female">여성</option>
+                        <option value="other">기타</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="nickname">닉네임</label>
+                    <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력하세요" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="birthdate">생일</label>
+                    <input type="date" id="birthdate" name="birthdate" required>
+                </div>
+
+                <div class="signup-button-container">
+                    <button class="signup-button" type="submit">회원가입</button>
+                </div>
             </div>
-            <div class="email-signup-form">
-                <label class="email-label" for="email">이메일 주소</label>
-                <input class="email-input" type="email" id="email" name="email" placeholder="example.email@gmail.com" />
-            </div>
-            <div class="pw-signup-form">
-                <label class="pw-label" for="pw">비밀번호</label>
-                <input class="pw-input" type="pw" id="pw" name="pw"  />
-            </div>
-            <div class="signup-button-container">
-                <button class="signup-button">회원가입</button>
-            </div>
+
             <div class="login-prompt">
                 <span class="login-text">계정이 있으신가요? </span>
                 <a href="login.html" class="login-link">로그인하기</a>
@@ -62,8 +81,6 @@
                 <span class="highlight-text">삶을 위해<br/>시작해보세요</span>
             </div>
         </div>
-    
-    
-   
+    </div>
 </body>
 </html>

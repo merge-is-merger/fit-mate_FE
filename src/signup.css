@@ -91,7 +91,26 @@ nav .logo {
     background: #402E7A;
     position: relative;
 }
+.signup-form {
+    margin-top: 20px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
 
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
 .left-container {
     width: 50%;
     background: white;
@@ -120,15 +139,6 @@ nav .logo {
     margin-bottom: 50px;
 }
 
-.social-signup-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 22px;
-    padding: 10px;
-    margin-bottom: 20px;
-    cursor: pointer;
-}
 
 .email-signup-divider {
     display: flex;
@@ -197,6 +207,9 @@ nav .logo {
 }
 
 
+.signup-button:hover {
+    background-color: #4f0e6f;
+}
 
 .login-prompt {
     text-align: center;

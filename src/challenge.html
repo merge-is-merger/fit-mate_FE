@@ -6,12 +6,14 @@
     <title>Fitmate</title>
     <link rel="stylesheet" href="challenge.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap">
-
+    <link rel="stylesheet" href="progress-bar.css" />
+    <script src="/path/to/cdn/jquery.min.js"></script>
+    <script src="progress-bar.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body>
     <!-------------about------->
     <div id="header" class="section-container">
-
         <div class="container">
             <nav>
                 <ul id="sidemenu">
@@ -22,13 +24,227 @@
                     <li><a href="community.html">커뮤니티</a></li>
                 </ul>
                 <a href="#header"><img src="images/fitmate.png" class="logo"></a>
-            
             </nav>
-
+        </div>
+    </div>
+    <!-------------body------->
+    <div class="containerMain">
+        <div class="CardCardProfile">
+            <div class="Rectangle12"></div>
+            <div class="Rectangle45"></div>
+            <div class="name" id="userName">김지원</div>
+            <div class="location" id="userLocation">대한민국</div>
+            <div class="profile-details">
+                <div class="age" id="userAge">나이 : 26</div>
+                <div class="birthdate" id="userBirthdate">생년월일 : 1999 - 02 - 12</div>
+                <div class="gender" id="userGender">성별 : 여</div>
+            </div>
         </div>
 
+        <div class="info-container">
+            
+            <div id="calendar"></div>
+            
 
+        <div id="texts">
+            <div class="title">
+                <span class="title-black">나의 </span><span class="title-purple">챌린지 캘린더</span>
+            </div>
+
+            <div class="text-goal">
+                나만의 운동 목표를 달성하기 위한 여정을 캘린더로 관리하세요 !
+            </div>
+        <div class="Frame116">
+            <div class="Rectangle67"></div>
+            <!---progress percentage-->
+            <div class="Rectangle68"></div>
+            <div class="Rectangle69"></div>
+     
+            <div class="progress-percent">50%</div>
+            <div class="progress-title">진행 상황 추적</div>
+        </div>
+        </div>
+        
+        </div>    
+        <img src="./images/Human.png" alt="Profile Image" class="profile-image"> 
     </div>
-    <!-------------about------->
+
+     <!---------------- New section -->
+     <div class="containerSecond">
+        <div class="header1">
+            <span class="header-text">이번 달의 </span><span class="header-highlight">챌린지</span>
+        </div>
+    
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide challenge challenge-1">
+                    <div class="challenge-content">
+                        <div class="title">요가 챌린지</div>
+                        <div class="description">매일 30분씩 요가를 실천하여 유연성과 정신적 안정감을 향상시키세요.</div>
+                        <button class="btn" onclick="openModal()">인증하기</button>
+                    </div>
+                </div>
+                <div class="swiper-slide challenge challenge-2">
+                    <div class="challenge-content">
+                        <div class="title">스쿼트 챌린지</div>
+                        <div class="description">매일 스쿼트를 통해 하체 근육을 강화하세요. 첫날 20회로 시작해, 매일 조금씩 횟수를 늘려보세요.</div>
+                        <button class="btn" onclick="openModal()">인증하기</button>
+                    </div>
+                </div>
+                <div class="swiper-slide challenge challenge-3">
+                    <div class="challenge-content">
+                        <div class="title">10,000걸음 걷기 챌린지</div>
+                        <div class="description">하루에 10,000걸음을 목표로 걷기를 실천하세요. 일상에서 더 많이 움직이며 건강을 증진시킬 수 있습니다.</div>
+                        <button class="btn" onclick="openModal()">인증하기</button>
+                    </div>
+                </div>
+                <div class="swiper-slide challenge challenge-4">
+                    <div class="challenge-content">
+                        <div class="title">하체 운동하기 챌린지</div>
+                        <div class="description">하루에 3세트.</div>
+                        <button class="btn" onclick="openModal()">인증하기</button>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div class="upload-container">
+                    <h2>이미지 업로드</h2>
+                    <form action="/upload" method="post" enctype="multipart/form-data">
+                        <input type="file" name="image" accept=".png, .jpg, .jpeg" required>
+                        <input type="submit" value="업로드">
+                    </form>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Include Swiper JS -->
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    
+        <!-- Swiper Initialization and Modal Script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var swiper = new Swiper('.swiper-container', {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    loop: true,
+                    initialSlide: 0, // Start from the first slide
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    
+                });
+    
+                // Modal functions
+                function openModal() {
+                    document.getElementById("myModal").style.display = "block";
+                }
+    
+                function closeModal() {
+                    document.getElementById("myModal").style.display = "none";
+                }
+    
+                // Close the modal when clicking outside
+                window.onclick = function(event) {
+                    if (event.target == document.getElementById("myModal")) {
+                        closeModal();
+                    }
+                }
+    
+                // Expose modal functions to global scope
+                window.openModal = openModal;
+                window.closeModal = closeModal;
+            });
+        </script>
+    </div>
+    
+
+    <!---------------- New section -->
+    <div class="containerThird">
+        <div class="Rectangle168"></div>
+        <div class="title3">나의 운동 기록</div>
+        <div class="subtitle">4주 동안 매주 3회 운동 완료</div>
+        <div class="weeks" style="left: 116px; top: 368px;">1 주차</div>
+        <div class="weeks" style="left: 116px; top: 568px;">2 주차</div>
+        <div class="weeks" style="left: 116px; top: 768px;">3 주차</div>
+        <div class="weeks" style="left: 116px; top: 968px;">4 주차</div>
+        <div class="quote">"4주 동안 꾸준히 운동을 실천하여 건강한 생활을 만들어보세요! <br/>당신은 할 수 있습니다."</div>
+        
+        <!-- Reusable Frame with Ellipses -->
+        <div class="Frame103" style="left: 122px; top: 425px;">
+            <div class="Frame106">
+                <div class="Ellipse35"></div>
+                <div class="Ellipse36"></div>
+                <div class="Ellipse37"></div>
+                <div class="stamp stamp-1"></div> <!-- Added class for stamp -->
+                <div class="stamp stamp-2"></div>
+                <div class="stamp stamp-3"></div>
+            </div>
+        </div>
+        <div class="Frame103" style="left: 122px; top: 625px;">
+            <div class="Frame106">
+                <div class="Ellipse35"></div>
+                <div class="Ellipse36"></div>
+                <div class="Ellipse37"></div>
+                <div class="stamp stamp-4"></div>
+                <div class="stamp stamp-5"></div>
+                <div class="stamp stamp-6"></div>
+            </div>
+        </div>
+        <div class="Frame103" style="left: 122px; top: 825px;">
+            <div class="Frame106">
+                <div class="Ellipse35"></div>
+                <div class="Ellipse36"></div>
+                <div class="Ellipse37"></div>
+                <div class="stamp stamp-7"></div>
+                <div class="stamp stamp-8"></div>
+                <div class="stamp stamp-9"></div>
+            </div>
+        </div>
+        <div class="Frame107" style="left: 120px; top: 1025px;">
+            <div class="Frame106">
+                <div class="Ellipse35"></div>
+                <div class="Ellipse36"></div>
+                <div class="Ellipse37"></div>
+                <div class="stamp stamp-10"></div>
+                <div class="stamp stamp-11"></div>
+                <div class="stamp stamp-12"></div>
+            </div>
+        </div>
+        
+        <div class="TablerIconCircleCheckFilled"></div>
+    </div>
+    
+
+     <!---------------- New section -->
+  <div class="containerEnd">
+    <div class="rectangle59"></div>
+    <div class="line1"></div>
+    <div class="privacy-terms">© 2024 Merge is Merger</div>
+    <div class="textbox2">
+      <div class="language">한국어</div>
+      <div class="chevron-down">
+        <div class="vector"></div>
+      </div>
+    </div>
+    <div class="team-info">
+      강원대학교 멋쟁이사자처럼<br />머지는 합병 팀
+    </div>
+    <img
+      class="groupName"
+      src="images/fitmate.png" 
+      alt="Fitmate Logo"
+    />
+
+  </div>
+  
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+    <script src="challenge.js"></script>
 </body>
 </html>
