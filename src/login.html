@@ -6,11 +6,11 @@
     <title>Login - Fitmate</title>
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap">
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="login.js" defer></script>
 </head>
 <body class="login-page">
     <div id="header" class="section-container">
-
         <div class="container">
             <nav>
                 <ul id="sidemenu">
@@ -21,18 +21,14 @@
                     <li><a href="community.html">커뮤니티</a></li>
                 </ul>
                 <a href="#header"><img src="images/fitmate.png" class="logo"></a>
-            
             </nav>
-
         </div>
-
-
     </div>
     <div class="login-container">
         <h1>로그인하세요</h1>
-        <form>
+        <form id="login-form" method="post">
             <div>
-                <label for="username">이메일:</label>
+                <label for="username">아이디:</label>
                 <input type="text" id="username" name="username">
             </div>
             <div>
@@ -42,7 +38,7 @@
             <button type="submit">로그인</button>
         </form>
         <div class="have-account">
-            <span>아직 계정을 없으신가요?</span>
+            <span>아직 계정이 없으신가요?</span>
             <a href="signup.html">회원가입하기</a>
         </div>
     </div>
