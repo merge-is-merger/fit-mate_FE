@@ -46,6 +46,23 @@
             <a href="signup.html">회원가입하기</a>
         </div>
     </div>
-    
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 실제 로그인 검증 로직 구현할 때 형식을 맞춰야함
+            //지금은 임의로 위에와 같이 username과 password로 진행
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username && password) {
+                // 로그인 성공으로 가정
+                localStorage.setItem('isLoggedIn', 'true');
+                window.location.href = 'index.html'; // 홈 페이지로 리다이렉션
+            } else {
+                alert('이메일과 비밀번호를 모두 입력해주세요.');
+            }
+        });
+    </script>
 </body>
 </html>
