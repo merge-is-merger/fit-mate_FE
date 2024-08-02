@@ -15,6 +15,12 @@ document.getElementById('login-form').addEventListener('submit', async function(
 
         console.log(response.data);
         alert('로그인에 성공했습니다.');
+        
+        // 서버로부터 사용자 ID를 응답 데이터에서 가져오기
+        const userId = response.data.userId;
+        // 사용자 ID를 세션 스토리지에 저장
+        sessionStorage.setItem('userId', userId);
+
         // 로그인 후 리다이렉션
         window.location.href = 'index.html';
     } catch (error) {

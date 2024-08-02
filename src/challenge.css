@@ -1052,3 +1052,9 @@ nav .logo {
   left: 440px;
   top: 415px;
 }
+
+/* 체크된 동그라미 스타일 */
+.checked {
+  background-image: url('src\images\challenge_check.png');
+  background-size: cover;
+}
