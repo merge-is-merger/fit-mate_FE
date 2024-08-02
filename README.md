@@ -1,32 +1,16 @@
-# Blockly Sample App
+## FITMATE_FE
 
-## Purpose
+## 기능
 
-This app illustrates how to use Blockly together with common programming tools like node/npm, webpack, typescript, eslint, and others. You can use it as the starting point for your own application and modify it as much as you'd like. It contains basic infrastructure for running, building, testing, etc. that you can use even if you don't understand how to configure the related tool yet. When your needs outgrow the functionality provided here, you can replace the provided configuration or tool with your own.
-
-## Quick Start
-
-1. [Install](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) npm if you haven't before.
-2. Run [`npx @blockly/create-package app <application-name>`](https://www.npmjs.com/package/@blockly/create-package) to clone this application to your own machine.
-3. Run `npm install` to install the required dependencies.
-4. Run `npm run start` to run the development server and see the app in action.
-5. If you make any changes to the source code, just refresh the browser while the server is running to see them.
+회원가입 및 로그인: 사용자는 아이디와 비밀번호를 통해 회원가입하고 로그인할 수 있습니다.
+챌린지: 사용자는 다양한 피트니스 챌린지에 참여할 수 있습니다.
+루틴 추적: 사용자는 자신만의 운동 루틴을 생성할 수 있습니다.
 
 ## Tooling
 
-The application uses many of the same tools that the Blockly team uses to develop Blockly itself. Following is a brief overview, and you can read more about them on our [developer site](https://developers.google.com/blockly/guides/contribute/get-started/development_tools).
+이 애플리케이션은 Blockly 팀이 Blockly 자체를 개발하는 데 사용하는 것과 많은 동일한 도구를 사용합니다. 다음은 간략한 개요이며, [개발자 사이트](https://developers.google.com/blockly/guides/contribute/get-started/development_tools)에서 이에 대해 더 읽을 수 있습니다.
 
-- Structure: The application is built as an npm package. You can use npm to manage the dependencies of the application.
-- Modules: ES6 modules to handle imports to/exports from other files.
-- Building/bundling: Webpack to build the source code and bundle it into one file for serving.
-- Development server: webpack-dev-server to run locally while in development.
-- Testing: Mocha to run unit tests.
-- Linting: Eslint to lint the code and ensure it conforms with a standard style.
-- UI Framework: Does not use a framework. For more complex applications, you may wish to integrate a UI framework like React or Angular.
-
-You can disable, reconfigure, or replace any of these tools at any time, but they are preconfigured to get you started developing your Blockly application quickly.
-
-## Structure
+## 프로젝트 구조
 
 - `package.json` contains basic information about the app. This is where the scripts to run, build, etc. are listed.
 - `package-lock.json` is used by npm to manage dependencies
@@ -34,17 +18,30 @@ You can disable, reconfigure, or replace any of these tools at any time, but the
 - `src/` contains the rest of the source code.
 - `dist/` contains the packaged output (that you could host on a server, for example). This is ignored by git and will only appear after you run `npm run build` or `npm run start`.
 
-### Source Code
+## 파일 및 디렉터리 설명
 
-- `index.html` contains the skeleton HTML for the page. This file is modified during the build to import the bundled source code output by webpack.
-- `index.js` is the entry point of the app. It configures Blockly and sets up the page to show the blocks, the generated code, and the output of running the code in JavaScript.
-- `serialization.js` has code to save and load the workspace using the browser's local storage. This is how your workspace is saved even after refreshing or leaving the page. You could replace this with code that saves the user's data to a cloud database instead.
-- `toolbox.js` contains the toolbox definition for the app. The current toolbox contains nearly every block that Blockly provides out of the box. You probably want to replace this definition with your own toolbox that uses your custom blocks and only includes the default blocks that are relevant to your application.
-- `blocks/text.js` has code for a custom text block, just as an example of creating your own blocks. You probably want to delete this block, and add your own blocks in this directory.
-- `generators/javascript.js` contains the JavaScript generator for the custom text block. You'll need to include block generators for any custom blocks you create, in whatever programming language(s) your application will use.
+- `blocks/`: 블록 관련 파일들이 포함된 디렉터리입니다.
+- `generators/`: 제너레이터 관련 파일들이 포함된 디렉터리입니다.
+- `images/`: 이미지 파일들이 포함된 디렉터리입니다.
+- `challenge.css`: 챌린지 페이지의 스타일시트 파일입니다.
+- `challenge.html`: 챌린지 페이지의 HTML 파일입니다.
+- `challenge.js`: 챌린지 페이지의 JavaScript 파일입니다.
+- `community.css`: 커뮤니티 페이지의 스타일시트 파일입니다.
+- `community.html`: 커뮤니티 페이지의 HTML 파일입니다.
+- `index.css`: 메인 페이지의 스타일시트 파일입니다.
+- `index.html`: 메인 페이지의 HTML 파일입니다.
+- `index.js`: 메인 페이지의 JavaScript 파일입니다.
+- `login.css`: 로그인 페이지의 스타일시트 파일입니다.
+- `login.html`: 로그인 페이지의 HTML 파일입니다.
+- `profile.css`: 프로필 페이지의 스타일시트 파일입니다.
+- `profile.html`: 프로필 페이지의 HTML 파일입니다.
+- `routine.css`: 루틴 페이지의 스타일시트 파일입니다.
+- `routine.html`: 루틴 페이지의 HTML 파일입니다.
+- `routine.js`: 루틴 페이지의 JavaScript 파일입니다.
+- `serialization.js`: 데이터 직렬화 관련 파일입니다.
+- `server.js`: 서버 설정 및 라우팅 파일입니다.
+- `signup.css`: 회원가입 페이지의 스타일시트 파일입니다.
+- `signup.html`: 회원가입 페이지의 HTML 파일입니다.
+- `toolbox.js`: 도구 관련 JavaScript 파일입니다.
 
-## Serving
 
-To run your app locally, run `npm run start` to run the development server. This mode generates source maps and ingests the source maps created by Blockly, so that you can debug using unminified code.
-
-To deploy your app so that others can use it, run `npm run build` to run a production build. This will bundle your code and minify it to reduce its size. You can then host the contents of the `dist` directory on a web server of your choosing. If you're just getting started, try using [GitHub Pages](https://pages.github.com/).
