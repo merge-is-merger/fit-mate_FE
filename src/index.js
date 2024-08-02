@@ -60,3 +60,28 @@
 //   }
 //   runCode();
 // });
+document.addEventListener('DOMContentLoaded', function() {
+    const tryNowButtons = document.querySelectorAll('.TryNow, .TryNow2');
+
+    tryNowButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            axios.get('http://localhost:8080/api/auth/session/status', {
+                withCredentials: true
+            })
+            .then(response => {
+                console.log('Session status response:', response); // 응답 로그 출력
+                if (response.data === 'Logged in') {
+                    window.location.href = 'challenge.html'; // 챌린지 페이지로 이동
+                } else {
+                    window.location.href = 'login.html'; // 세션이 유효하지 않은 경우 로그인 페이지로 이동
+                }
+            })
+            .catch(error => {
+                console.error('세션 상태 확인 중 오류 발생:', error);
+                window.location.href = 'login.html'; // 오류 발생 시 로그인 페이지로 이동
+            });
+        });
+    });
+});
