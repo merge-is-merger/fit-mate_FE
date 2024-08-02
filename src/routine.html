@@ -17,8 +17,10 @@
             <nav>
                 <ul id="sidemenu">
                     <li><a href="index.html">홈</a></li>
+                    <li><a href="profile.html">프로필</a></li>
                     <li><a href="routine.html">마이루틴</a></li>
                     <li><a href="challenge.html">챌린지</a></li>
+                    <li><a href="community.html">커뮤니티</a></li>
                 </ul>
                 <a href="#header"><img src="images/fitmate.png" class="logo"></a>
             
@@ -34,8 +36,10 @@
           <nav>
               <ul id="sidemenu">
                   <li><a href="index.html">홈</a></li>
+                  <li><a href="profile.html">프로필</a></li>
                   <li><a href="routine.html">마이루틴</a></li>
                   <li><a href="challenge.html">챌린지</a></li>
+                  <li><a href="community.html">커뮤니티</a></li>
               </ul>
               <a href="#header"><img src="images/fitmate.png" class="logo" alt="Fitmate Logo"></a>
           </nav>
@@ -179,42 +183,65 @@
           </div>
       </div>
       <div id="outputPane">
-          <h2>생성된 운동 루틴</h2>
-          <pre id="generatedCode"><code></code></pre>
-          <div id="output"></div>
-          <button id="saveRoutine">루틴 저장</button>
-          <button id="shareRoutine">루틴 공유</button>
-         <button button id="startRoutine">루틴 시작</button>
+        <pre id="generatedCode"><code></code></pre>
+        <div id="output"></div>
+        <div id="exerciseTimer">
+          <h3>운동 타이머</h3>
+          <div class="timer">
+              <button id="decreaseExerciseMinutes">-</button>
+              <span id="exerciseMinutes">00</span>
+              <button id="increaseExerciseMinutes">+</button>
+              :
+              <button id="decreaseExerciseSeconds">-</button>
+              <span id="exerciseSeconds">00</span>
+              <button id="increaseExerciseSeconds">+</button>
+          </div>
+          <div id="exerciseSetCounter">세트: <span id="exerciseSetCount">0</span></div>
+          <button id="startExercise">시작</button>
+          <button id="pauseExercise">일시정지</button>
+          <button id="resetExercise">종료</button>
       </div>
+        <div id="restTimer">
+            <h3>휴식 타이머</h3>
+            <div class="timer">
+                <span id="restMinutes">01</span>:<span id="restSeconds">00</span>
+            </div>
+            <div id="restSetCounter">세트: <span id="restSetCount">0</span></div>
+            <button id="startRest">시작</button>
+            <button id="pauseRest">일시정지</button>
+            <button id="resetRest">종료</button>
+        </div>
+        <button id="endRoutine">루틴 종료</button>
+    </div>
   </div>
 
 
-          <xml id="toolbox" style="display: none">
-        <category name="가슴 운동" colour="#FF6F61">
+      <xml id="toolbox" style="display: none">
+        <category name="가슴 운동">
           <block type="chest_exercise_category"></block>
           <block type="chest_press"></block>
           <block type="incline_push_up"></block>
           <block type="peck_deck_fly"></block>
         </category>
-        <category name="등 운동" colour="#64B5F6">
+        <category name="등 운동">
           <block type="back_exercise_category"></block>
           <block type="Lever_Front_Pulldown"></block>
           <block type="Pull_Up"></block>
           <block type="Cable_Rear_Pulldown"></block>
         </category>
-        <category name="어깨 운동"  colour="#81C784">
+        <category name="어깨 운동">
           <block type="shoulder_exercise_category"></block>
           <block type="SMITH_MACHINE_SHOULDER_PRESS"></block>
           <block type="FLY_MACHINE"></block>
           <block type="FACE_FULL"></block>
         </category>
-        <category name="팔 운동" colour="#FFD54F">
+        <category name="팔 운동">
           <block type="arm_exercise_category"></block>
           <block type="Dumbbell_Reverse_Curl"></block>
           <block type="Dumbbell_Seated_Neutral_Wrist_Curl"></block>
           <block type="Water_Bottle_Hammer_Curl"></block>
         </category>
-        <category name="하체 운동" colour="#FFAB91">
+        <category name="하체 운동">
           <block type="lower_body_exercise_category"></block>
           <block type="Dumbbell_Walking_Lunge"></block>
           <block type="Dumbbell_Deadlift"></block>
@@ -499,48 +526,197 @@ Blockly.Blocks['lower_body_exercise_category'] = {
         // 초기 설정: 가슴 운동 콘텐츠 활성화
         showExercise('chest');
 
-        // 운동 루틴 저장 함수
- function saveRoutine() {
-   const routineCode = document.getElementById('generatedCode').textContent;
-   localStorage.setItem('savedRoutine', routineCode);
-   alert('운동 루틴이 저장되었습니다!');
- }
+// 운동 타이머
+let exerciseTimer;
+let exerciseMinutes = 0;
+let exerciseSeconds = 0;
+let isExerciseRunning = false;
+let exerciseSets = 0;
 
- // 운동 루틴 공유 함수
- function shareRoutine() {
-   const routineCode = document.getElementById('generatedCode').textContent;
-   // 여기서는 간단히 텍스트를 클립보드에 복사하는 방식으로 구현합니다.
-   navigator.clipboard.writeText(routineCode).then(function() {
-       alert('운동 루틴이 클립보드에 복사되었습니다. 원하는 곳에 붙여넣기 하세요!');
-   }, function(err) {
-       console.error('클립보드 복사 실패: ', err);
-   });
- }
+// 휴식 타이머
+let restTimer;
+let restMinutes = 1;
+let restSeconds = 0;
+let isRestRunning = false;
+let restSets = 0;
 
-// // 운동 루틴 시작 함수
- function startRoutine() {
-   const routineCode = document.getElementById('generatedCode').textContent;
-   const exercises = routineCode.split('\n').filter(line => line.trim() !== '');
-  
-   let currentExercise = 0;
-  
-   function showNextExercise() {
-       if (currentExercise < exercises.length) {
-           alert(`다음 운동: ${exercises[currentExercise]}\n준비되셨으면 확인을 눌러주세요.`);
-           currentExercise++;
-           setTimeout(showNextExercise, 30000); // 30초 후 다음 운동으로 넘어갑니다.
-       } else {
-           alert('모든 운동을 완료했습니다. 수고하셨습니다!');
-       }
-   }
-  
-   showNextExercise();
- }
+// DOM 요소
+const exerciseMinutesDisplay = document.getElementById('exerciseMinutes');
+const exerciseSecondsDisplay = document.getElementById('exerciseSeconds');
+const exerciseSetCountDisplay = document.getElementById('exerciseSetCount');
+const startExerciseButton = document.getElementById('startExercise');
+const pauseExerciseButton = document.getElementById('pauseExercise');
+const resetExerciseButton = document.getElementById('resetExercise');
+const decreaseExerciseMinutesButton = document.getElementById('decreaseExerciseMinutes');
+const increaseExerciseMinutesButton = document.getElementById('increaseExerciseMinutes');
+const decreaseExerciseSecondsButton = document.getElementById('decreaseExerciseSeconds');
+const increaseExerciseSecondsButton = document.getElementById('increaseExerciseSeconds');
 
-// // 버튼에 이벤트 리스너 추가
- document.getElementById('saveRoutine').addEventListener('click', saveRoutine);
- document.getElementById('shareRoutine').addEventListener('click', shareRoutine);
- document.getElementById('startRoutine').addEventListener('click', startRoutine);
+const restMinutesDisplay = document.getElementById('restMinutes');
+const restSecondsDisplay = document.getElementById('restSeconds');
+const restSetCountDisplay = document.getElementById('restSetCount');
+const startRestButton = document.getElementById('startRest');
+const pauseRestButton = document.getElementById('pauseRest');
+const resetRestButton = document.getElementById('resetRest');
+
+const endRoutineButton = document.getElementById('endRoutine');
+
+function updateExerciseDisplay() {
+    exerciseMinutesDisplay.textContent = exerciseMinutes.toString().padStart(2, '0');
+    exerciseSecondsDisplay.textContent = exerciseSeconds.toString().padStart(2, '0');
+    exerciseSetCountDisplay.textContent = exerciseSets;
+}
+
+function updateRestDisplay() {
+    restMinutesDisplay.textContent = restMinutes.toString().padStart(2, '0');
+    restSecondsDisplay.textContent = restSeconds.toString().padStart(2, '0');
+    restSetCountDisplay.textContent = restSets;
+}
+
+function startExercise() {
+    if (!isExerciseRunning) {
+        isExerciseRunning = true;
+        exerciseTimer = setInterval(() => {
+            if (exerciseSeconds > 0 || exerciseMinutes > 0) {
+                if (exerciseSeconds === 0) {
+                    exerciseMinutes--;
+                    exerciseSeconds = 59;
+                } else {
+                    exerciseSeconds--;
+                }
+                updateExerciseDisplay();
+            } else {
+                clearInterval(exerciseTimer);
+                isExerciseRunning = false;
+                exerciseSets++;
+                updateExerciseDisplay();
+                alert('운동 세트 완료! 휴식을 시작하세요.');
+            }
+        }, 1000);
+    }
+}
+
+function pauseExercise() {
+    clearInterval(exerciseTimer);
+    isExerciseRunning = false;
+}
+
+function resetExercise() {
+    clearInterval(exerciseTimer);
+    isExerciseRunning = false;
+    exerciseMinutes = 0;
+    exerciseSeconds = 0;
+    //exerciseSets++;
+    updateExerciseDisplay();
+}
+
+function decreaseExerciseMinutes() {
+    if (exerciseMinutes > 0) {
+        exerciseMinutes--;
+        updateExerciseDisplay();
+    }
+}
+
+function increaseExerciseMinutes() {
+    exerciseMinutes++;
+    updateExerciseDisplay();
+}
+
+function decreaseExerciseSeconds() {
+    if (exerciseSeconds >= 15) {
+        exerciseSeconds -= 15;
+    } else if (exerciseMinutes > 0) {
+        exerciseMinutes--;
+        exerciseSeconds = 45;
+    } else {
+        exerciseSeconds = 0;
+    }
+    displaySeconds = exerciseSeconds;
+    updateExerciseDisplay();
+}
+
+function increaseExerciseSeconds() {
+    if (exerciseSeconds < 45) {
+        exerciseSeconds += 15;
+    } else {
+        exerciseSeconds = 0;
+        exerciseMinutes++;
+    }
+    displaySeconds = exerciseSeconds;
+    updateExerciseDisplay();
+}
+
+function startRest() {
+    if (!isRestRunning) {
+        isRestRunning = true;
+        restTimer = setInterval(() => {
+            if (restSeconds > 0 || restMinutes > 0) {
+                if (restSeconds === 0) {
+                    restMinutes--;
+                    restSeconds = 59;
+                } else {
+                    restSeconds--;
+                }
+                updateRestDisplay();
+            } else {
+                clearInterval(restTimer);
+                isRestRunning = false;
+                restSets++;
+                restMinutes = 1;
+                restSeconds = 0;
+                updateRestDisplay();
+                alert('휴식 완료! 다음 운동 세트를 시작하세요.');
+            }
+        }, 1000);
+    }
+}
+
+function pauseRest() {
+    clearInterval(restTimer);
+    isRestRunning = false;
+}
+
+function resetRest() {
+    clearInterval(restTimer);
+    isRestRunning = false;
+    restMinutes = 1;
+    restSeconds = 0;
+    restSets++;
+    updateRestDisplay();
+}
+
+function endRoutine() {
+    clearInterval(exerciseTimer);
+    clearInterval(restTimer);
+    isExerciseRunning = false;
+    isRestRunning = false;
+    alert('운동이 완료되었습니다! 수고하셨습니다!');
+    exerciseMinutes = 0;
+    exerciseSeconds = 0;
+    exerciseSets = 0;
+    restMinutes = 1;
+    restSeconds = 0;
+    restSets = 0;
+    updateExerciseDisplay();
+    updateRestDisplay();
+}
+
+startExerciseButton.addEventListener('click', startExercise);
+pauseExerciseButton.addEventListener('click', pauseExercise);
+resetExerciseButton.addEventListener('click', resetExercise);
+decreaseExerciseMinutesButton.addEventListener('click', decreaseExerciseMinutes);
+increaseExerciseMinutesButton.addEventListener('click', increaseExerciseMinutes);
+decreaseExerciseSecondsButton.addEventListener('click', decreaseExerciseSeconds);
+increaseExerciseSecondsButton.addEventListener('click', increaseExerciseSeconds);
+
+startRestButton.addEventListener('click', startRest);
+pauseRestButton.addEventListener('click', pauseRest);
+resetRestButton.addEventListener('click', resetRest);
+
+endRoutineButton.addEventListener('click', endRoutine);
+
+updateExerciseDisplay();
+updateRestDisplay();
       </script>
 </body>
 </html>
