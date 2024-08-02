@@ -183,9 +183,10 @@
           </div>
       </div>
       <div id="outputPane">
-    
+        <pre id="generatedCode"><code></code></pre>
+        <div id="output"></div>
+        <h3>운동 타이머</h3>
         <div id="exerciseTimer">
-          <h3>운동 타이머</h3>
           <div class="timer">
               <button id="decreaseExerciseMinutes">-</button>
               <span id="exerciseMinutes">01</span>
@@ -195,13 +196,13 @@
               <span id="exerciseSeconds">30</span>
               <button id="increaseExerciseSeconds">+</button>
           </div>
-          <div id="exerciseSetCounter">세트: <span id="exerciseSetCount">0</span></div>
           <button id="startExercise">시작</button>
           <button id="pauseExercise">일시정지</button>
           <button id="resetExercise">종료</button>
       </div>
+      <div id="exerciseSetCounter"><span id="exerciseSetCount">0</span> 세트</div>
+      <h3>휴식 타이머</h3>
         <div id="restTimer">
-            <h3>휴식 타이머</h3>
             <div class="timer">
                 <span id="restMinutes">01</span>:<span id="restSeconds">00</span>
             </div>
@@ -270,7 +271,7 @@
         .appendField("체스트 프레스");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour('rgb(255, 0, 0)');
+    this.setColour(230);
     this.setTooltip("체스트 프레스 운동을 수행합니다");
     this.setHelpUrl("");
   }
@@ -282,7 +283,7 @@ Blockly.Blocks['incline_push_up'] = {
         .appendField("인클라인 푸시업");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour('rgb(255, 0, 0)');
+    this.setColour(230);
     this.setTooltip("인클라인 푸시업 운동을 수행합니다");
     this.setHelpUrl("");
   }
@@ -294,7 +295,7 @@ Blockly.Blocks['peck_deck_fly'] = {
         .appendField("펙 덱 플라이");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour('rgb(255, 0, 0)');
+    this.setColour(230);
     this.setTooltip("펙 덱 플라이 운동을 수행합니다");
     this.setHelpUrl("");
   }
@@ -306,7 +307,7 @@ Blockly.Blocks['chest_exercise_category'] = {
         .appendField("가슴 운동");
     this.appendStatementInput("EXERCISES")
         .setCheck(null);
-    this.setColour('rgb(255, 0, 0)');
+    this.setColour(230);
     this.setTooltip("가슴 운동 블록들을 포함합니다");
     this.setHelpUrl("");
   }
@@ -318,7 +319,7 @@ Blockly.Blocks['Lever_Front_Pulldown'] = {
         .appendField("레버 프론트 풀 다운");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour('rgb(0, 0, 255)');   // BlueColour(230);
+    this.setColour(230);
     this.setTooltip("레버 프론트 풀 다운 운동을 수행합니다");
     this.setHelpUrl("");
   }
@@ -330,7 +331,7 @@ Blockly.Blocks['Pull_Up'] = {
         .appendField("풀 업");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour('rgb(0, 0, 255)');   // Blue
+    this.setColour(230);
     this.setTooltip("풀 업 운동을 수행합니다");
     this.setHelpUrl("");
   }
@@ -342,7 +343,7 @@ Blockly.Blocks['Cable_Rear_Pulldown'] = {
         .appendField("케이블 리어 풀 다운");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour('rgb(0, 0, 255)');   // Blue
+    this.setColour(230);
     this.setTooltip("케이블 리어 풀 다운 운동을 수행합니다");
     this.setHelpUrl("");
   }
@@ -354,7 +355,7 @@ Blockly.Blocks['back_exercise_category'] = {
         .appendField("등 운동");
     this.appendStatementInput("EXERCISES")
         .setCheck(null);
-        this.setColour('rgb(0, 0, 255)');   // Blue
+    this.setColour(230);
     this.setTooltip("등 운동 블록들을 포함합니다");
     this.setHelpUrl("");
   }
@@ -367,7 +368,7 @@ Blockly.Blocks['SMITH_MACHINE_SHOULDER_PRESS'] = {
         .appendField("스미스 머신 숄더 프레스");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour('rgb(0, 255, 0)');   // Green
+    this.setColour(230);
     this.setTooltip("스미스 머신 숄더 프레스 운동을 수행합니다");
     this.setHelpUrl("");
   }
@@ -379,7 +380,7 @@ Blockly.Blocks['FLY_MACHINE'] = {
         .appendField("플라이 머신");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour('rgb(0, 255, 0)');   // Green
+    this.setColour(230);
     this.setTooltip("풀 업 운동을 수행합니다");
     this.setHelpUrl("");
   }
@@ -391,7 +392,7 @@ Blockly.Blocks['FACE_FULL'] = {
         .appendField("페이스 풀");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour('rgb(0, 255, 0)');   // Green
+    this.setColour(230);
     this.setTooltip("페이스 풀 운동을 수행합니다");
     this.setHelpUrl("");
   }
@@ -403,7 +404,7 @@ Blockly.Blocks['shoulder_exercise_category'] = {
         .appendField("어깨 운동");
     this.appendStatementInput("EXERCISES")
         .setCheck(null);
-    this.setColour('rgb(128, 0, 128)'); // Purple
+    this.setColour(230);
     this.setTooltip("어깨 운동 블록들을 포함합니다");
     this.setHelpUrl("");
   }
@@ -415,7 +416,7 @@ Blockly.Blocks['Dumbbell_Reverse_Curl'] = {
         .appendField("덤벨 리버스 컬");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour('rgb(128, 0, 128)'); // Purple
+    this.setColour(230);
     this.setTooltip("덤벨 리버스 컬 운동을 수행합니다");
     this.setHelpUrl("");
   }
@@ -427,7 +428,7 @@ Blockly.Blocks['Dumbbell_Seated_Neutral_Wrist_Curl'] = {
         .appendField("덤벨 시티드 뉴트럴 리스트 컬");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour('rgb(128, 0, 128)'); // Purple
+    this.setColour(230);
     this.setTooltip("덤벨 데드리프트 운동을 수행합니다");
     this.setHelpUrl("");
   }
@@ -439,7 +440,7 @@ Blockly.Blocks['Water_Bottle_Hammer_Curl'] = {
         .appendField("물병 해머 컬");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour('rgb(128, 0, 128)'); // Purple
+    this.setColour(230);
     this.setTooltip("물병 해머 컬 운동을 수행합니다");
     this.setHelpUrl("");
   }
@@ -451,8 +452,7 @@ Blockly.Blocks['arm_exercise_category'] = {
         .appendField("팔 운동");
     this.appendStatementInput("EXERCISES")
         .setCheck(null);
-    this.setColour('rgb(255, 255, 0)'); // Yellow
-
+    this.setColour(230);
     this.setTooltip("팔 운동 블록들을 포함합니다");
     this.setHelpUrl("");
   }
@@ -464,7 +464,7 @@ Blockly.Blocks['Dumbbell_Walking_Lunge'] = {
         .appendField("덤벨 워킹 런지");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour('rgb(255, 255, 0)'); // Yellow
+    this.setColour(230);
     this.setTooltip("덤벨 워킹 런지 운동을 수행합니다");
     this.setHelpUrl("");
   }
@@ -476,8 +476,7 @@ Blockly.Blocks['Dumbbell_Deadlift'] = {
         .appendField("덤벨 데드리프트");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour('rgb(255, 255, 0)'); // Yellow
-
+    this.setColour(230);
     this.setTooltip("덤벨 데드리프트 운동을 수행합니다");
     this.setHelpUrl("");
   }
@@ -489,8 +488,7 @@ Blockly.Blocks['Dumbbell_Goblet_Squat'] = {
         .appendField("덤벨 고블릿 스쿼트");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour('rgb(255, 255, 0)'); // Yellow
-
+    this.setColour(230);
     this.setTooltip("덤벨 고블릿 스쿼트 운동을 수행합니다");
     this.setHelpUrl("");
   }
@@ -502,8 +500,7 @@ Blockly.Blocks['lower_body_exercise_category'] = {
         .appendField("하체 운동");
     this.appendStatementInput("EXERCISES")
         .setCheck(null);
-        this.setColour('rgb(255, 255, 0)'); // Yellow
-
+    this.setColour(230);
     this.setTooltip("하체 운동 블록들을 포함합니다");
     this.setHelpUrl("");
   }
@@ -575,7 +572,6 @@ function updateExerciseDisplay() {
 function updateRestDisplay() {
     restMinutesDisplay.textContent = restMinutes.toString().padStart(2, '0');
     restSecondsDisplay.textContent = restSeconds.toString().padStart(2, '0');
-    restSetCountDisplay.textContent = restSets;
 }
 
 function startExercise() {
@@ -731,7 +727,7 @@ function endRoutine() {
     restMinutes = 1;
     restSeconds = 0;
     restSets = 0;
-    totalExerciseTimeSeconds = 0;
+    totalExerciseTimeSeconds = -1;
     updateExerciseDisplay();
     updateRestDisplay();
 }
@@ -752,7 +748,6 @@ resetRestButton.addEventListener('click', resetRest);
 endRoutineButton.addEventListener('click', endRoutine);
 
 updateExerciseDisplay();
-updateRestDisplay();
       </script>
 </body>
 </html>
