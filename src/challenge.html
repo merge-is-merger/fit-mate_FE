@@ -6,9 +6,11 @@
     <title>Fitmate</title>
     <link rel="stylesheet" href="challenge.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="progress-bar.css" />
-    <script src="/path/to/cdn/jquery.min.js"></script>
-    <script src="progress-bar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/path/to/cdn/jquery.min.js"></script> -->
+    <!-- <script src="progress-bar.js"></script> -->
+    <script src="challenge_BE.js" defer></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body>
@@ -19,7 +21,7 @@
                 <ul id="sidemenu">
                     <li><a href="index.html">홈</a></li>
                     <li><a href="routine.html">마이루틴</a></li>
-                    <li><a href="challenge.html">챌린지</a></li>
+                    <li><a href="challenge.html" id="challenge-sidemenu">챌린지</a></li>
                 </ul>
                 <a href="#header"><img src="images/fitmate.png" class="logo"></a>
             </nav>
@@ -30,12 +32,13 @@
         <div class="CardCardProfile">
             <div class="Rectangle12"></div>
             <div class="Rectangle45"></div>
-            <div class="name" id="userName">김지원</div>
+            <div class="name" id="userName"></div>
             <div class="location" id="userLocation">대한민국</div>
             <div class="profile-details">
                 <div class="age" id="userAge">나이 : 26</div>
-                <div class="birthdate" id="userBirthdate">생년월일 : 1999 - 02 - 12</div>
-                <div class="gender" id="userGender">성별 : 여</div>
+                <div class="birthdate" id="userBirthdate">생년월일 : </div>
+                <div class="gender" id="userGender">성별 : </div>
+                <div class="count" id="userCount">챌린지 수 : </div> 
             </div>
         </div>
 
