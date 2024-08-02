@@ -6,6 +6,8 @@
     <title>Sign Up</title>
     <link rel="stylesheet" href="signup.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap">
+    <!-- Axios CDN 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div id="header" class="section-container">
@@ -25,47 +27,49 @@
         <div class="left-container">
             <div class="create-account">계정을 만들거나 로그인하세요</div>
             <div class="terms-notice">계정 만들면 약관에 동의하는 것으로 간주됩니다.</div>
-           
-            <div class="signup-form">
-                <div class="form-group">
-                    <label for="username">아이디</label>
-                    <input type="text" id="username" name="username" placeholder="아이디를 입력하세요" required>
-                </div>
 
-                <div class="form-group">
-                    <label for="password">비밀번호</label>
-                    <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
-                </div>
+            <form id="signup-form">
+                <div class="signup-form">
+                    <div class="form-group">
+                        <label for="username">아이디</label>
+                        <input type="text" id="username" name="username" placeholder="아이디를 입력하세요" required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="confirm-password">비밀번호 확인</label>
-                    <input type="password" id="confirm-password" name="confirm-password" placeholder="비밀번호를 확인하세요" required>
-                </div>
+                    <div class="form-group">
+                        <label for="password">비밀번호</label>
+                        <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="gender">성별</label>
-                    <select id="gender" name="gender" required>
-                        <option value="">선택하세요</option>
-                        <option value="male">남성</option>
-                        <option value="female">여성</option>
-                        <option value="other">기타</option>
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label for="confirm-password">비밀번호 확인</label>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="비밀번호를 확인하세요" required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="nickname">닉네임</label>
-                    <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력하세요" required>
-                </div>
+                    <div class="form-group">
+                        <label for="gender">성별</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">선택하세요</option>
+                            <option value="MALE">남성</option>
+                            <option value="FEMALE">여성</option>
+                            <option value="OTHER">기타</option>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label for="birthdate">생일</label>
-                    <input type="date" id="birthdate" name="birthdate" required>
-                </div>
+                    <div class="form-group">
+                        <label for="nickname">닉네임</label>
+                        <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력하세요" required>
+                    </div>
 
-                <div class="signup-button-container">
-                    <button class="signup-button" type="submit">회원가입</button>
+                    <div class="form-group">
+                        <label for="birthdate">생일</label>
+                        <input type="date" id="birthdate" name="birthdate" required>
+                    </div>
+
+                    <div class="signup-button-container">
+                        <button class="signup-button" type="submit">회원가입</button>
+                    </div>
                 </div>
-            </div>
+            </form>
 
             <div class="login-prompt">
                 <span class="login-text">계정이 있으신가요? </span>
@@ -80,5 +84,8 @@
             </div>
         </div>
     </div>
+
+    <!-- signup.js는 Axios가 로드된 후 로드됨 -->
+    <script src="signup.js" defer></script>
 </body>
 </html>

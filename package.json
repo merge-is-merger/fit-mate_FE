@@ -24,6 +24,8 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "blockly": "^11.0.0"
+    "axios": "^1.7.2",
+    "blockly": "^11.0.0",
+    "express": "^4.19.2"
   }
 }
