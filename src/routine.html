@@ -189,11 +189,11 @@
           <h3>운동 타이머</h3>
           <div class="timer">
               <button id="decreaseExerciseMinutes">-</button>
-              <span id="exerciseMinutes">00</span>
+              <span id="exerciseMinutes">01</span>
               <button id="increaseExerciseMinutes">+</button>
               :
               <button id="decreaseExerciseSeconds">-</button>
-              <span id="exerciseSeconds">00</span>
+              <span id="exerciseSeconds">30</span>
               <button id="increaseExerciseSeconds">+</button>
           </div>
           <div id="exerciseSetCounter">세트: <span id="exerciseSetCount">0</span></div>
@@ -206,7 +206,6 @@
             <div class="timer">
                 <span id="restMinutes">01</span>:<span id="restSeconds">00</span>
             </div>
-            <div id="restSetCounter">세트: <span id="restSetCount">0</span></div>
             <button id="startRest">시작</button>
             <button id="pauseRest">일시정지</button>
             <button id="resetRest">종료</button>
@@ -528,10 +527,13 @@ Blockly.Blocks['lower_body_exercise_category'] = {
 
 // 운동 타이머
 let exerciseTimer;
-let exerciseMinutes = 0;
-let exerciseSeconds = 0;
+let exerciseMinutes = 1;
+let exerciseSeconds = 30;
 let isExerciseRunning = false;
 let exerciseSets = 0;
+// 실제 운동한 시간 저장하는 전역변수
+let totalExerciseTimeSeconds = 0;
+let currentSetStartTime = 0;
 
 // 휴식 타이머
 let restTimer;
@@ -576,6 +578,7 @@ function updateRestDisplay() {
 function startExercise() {
     if (!isExerciseRunning) {
         isExerciseRunning = true;
+        currentSetStartTime = Date.now();
         exerciseTimer = setInterval(() => {
             if (exerciseSeconds > 0 || exerciseMinutes > 0) {
                 if (exerciseSeconds === 0) {
@@ -590,6 +593,7 @@ function startExercise() {
                 isExerciseRunning = false;
                 exerciseSets++;
                 updateExerciseDisplay();
+                endExerciseSet();
                 alert('운동 세트 완료! 휴식을 시작하세요.');
             }
         }, 1000);
@@ -597,17 +601,23 @@ function startExercise() {
 }
 
 function pauseExercise() {
-    clearInterval(exerciseTimer);
-    isExerciseRunning = false;
+    if (isExerciseRunning) {
+        clearInterval(exerciseTimer);
+        isExerciseRunning = false;
+        totalExerciseTimeSeconds += Math.floor((Date.now() - currentSetStartTime) / 1000);
+    }
 }
 
 function resetExercise() {
     clearInterval(exerciseTimer);
     isExerciseRunning = false;
-    exerciseMinutes = 0;
-    exerciseSeconds = 0;
-    //exerciseSets++;
+    exerciseMinutes = 1;
+    exerciseSeconds = 30;
     updateExerciseDisplay();
+}
+
+function endExerciseSet() {
+    totalExerciseTimeSeconds += Math.floor((Date.now() - currentSetStartTime) / 1000);
 }
 
 function decreaseExerciseMinutes() {
@@ -688,18 +698,41 @@ function resetRest() {
 function endRoutine() {
     clearInterval(exerciseTimer);
     clearInterval(restTimer);
+    
+    if (isExerciseRunning) {
+        endExerciseSet();
+    }
+    
     isExerciseRunning = false;
     isRestRunning = false;
-    alert('운동이 완료되었습니다! 수고하셨습니다!');
-    exerciseMinutes = 0;
-    exerciseSeconds = 0;
+    
+    let hours = Math.floor(totalExerciseTimeSeconds / 3600);
+    let minutes = Math.floor((totalExerciseTimeSeconds % 3600) / 60);
+    let seconds = totalExerciseTimeSeconds % 60;
+    
+    let timeString = '';
+    if (hours > 0) timeString += hours + '시간 ';
+    if (minutes > 0 || hours > 0) timeString += minutes + '분 ';
+    timeString += seconds + '초';
+
+    let message = '운동이 완료되었습니다! 수고하셨습니다!\n\n';
+    message += '총 운동 시간: ' + timeString + '\n';
+    message += '완료한 세트 수: ' + exerciseSets;
+
+    alert(message);
+
+    // 타이머 리셋
+    exerciseMinutes = 1;
+    exerciseSeconds = 30;
     exerciseSets = 0;
     restMinutes = 1;
     restSeconds = 0;
     restSets = 0;
+    totalExerciseTimeSeconds = 0;
     updateExerciseDisplay();
     updateRestDisplay();
 }
+
 
 startExerciseButton.addEventListener('click', startExercise);
 pauseExerciseButton.addEventListener('click', pauseExercise);
