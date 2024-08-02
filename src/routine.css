@@ -86,11 +86,11 @@ nav .logo {
 
 #blocklyDiv {
   flex-basis: 40%;
-  height: 100%;
+  height: 98%;
   min-width: 300px;
-  padding: 20px;
-  background-color:#402E7A;
-  overflow: auto; /* 추가 */
+  padding: 10px; /* 패딩을 줄여서 보라색 테두리 두께 줄이기 */
+  background-color: #402E7A;
+  overflow: auto;
 }
 #imageSection {
   flex-basis: 25%;
@@ -105,16 +105,17 @@ nav .logo {
   flex-direction: column;
   overflow: auto;
   padding: 20px;
-  background-color: #f3e6ff; 
-
+  background-color: #f3e6ff;
+  max-height: 100vh; /* 뷰포트 높이에 맞춤 */
 }
-
-
 
 #output {
-  height: 50%;
+  display: none; /* 불필요한 공간을 제거합니다 */
 }
 
+h3 {
+  margin: 10px 0;
+}
 
 .exercise-section {
   width: 100%;
@@ -173,7 +174,7 @@ nav .logo {
 #exerciseTimer, #restTimer {
   text-align: center;
   background-color: #f3e6ff; /* 기존 배경색 유지 */
-  border: 8px solid #402E7A; /* 두꺼운 테두리 추가 */
+  border: 6px solid #402E7A; /* 두꺼운 테두리 추가 */
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 20px;
@@ -296,18 +297,23 @@ nav .logo {
 #endRoutine {
   background-color: #402E7A;
   color: white;             /* White text */
-  padding: 10px 20px;       /* Padding around the text */
+  padding: 10px 180px;       /* Padding around the text */
   border: none;             /* No border */
   border-radius: 5px;       /* Rounded corners */
   font-size: 16px;          /* Font size */
   cursor: pointer;          /* Pointer cursor on hover */
-  margin-top: 150px;         /* Margin at the top for spacing */
+  margin: auto;        /* Margin at the top for spacing */
   transition: background-color 0.3s; /* Smooth transition for background color */
   align-items: center;
 }
 
 #endRoutine:hover {
   background-color:#6D31ED; /* Darker red on hover */
+}
+
+/* 추가된 스타일 */
+#generatedCode {
+  display: none; /* 불필요한 공간을 제거합니다 */
 }
 
 .blocklyMainBackground {
@@ -331,4 +337,3 @@ nav .logo {
   flex-direction: column;
   gap: 50px; 
 }
-
