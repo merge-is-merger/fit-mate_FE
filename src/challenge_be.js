@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function fetchProgress(userId) {
         axios.get(`http://localhost:8080/api/challenge?userId=${userId}`)
             .then(response => {
-                updateCircles(response.data.challenge.count);
+                const count = response.data.user.count;
+                updateCircles(count);
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -25,6 +26,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const circle = document.getElementById(`circle-${Math.ceil(i / 3)}-${i % 3 === 0 ? 3 : i % 3}`);
             if (circle) {
                 circle.classList.add('checked');
+                // 해당 엘리먼트의 자식 중 stamp 클래스를 가진 요소를 찾아 표시합니다.
+                const stamp = circle.querySelector('.stamp');
+                if (stamp) {
+                    stamp.style.display = 'block';
+                }
             }
         }
     }

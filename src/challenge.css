@@ -1055,6 +1055,22 @@ nav .logo {
 
 /* 체크된 동그라미 스타일 */
 .checked {
-  background-image: url('src\images\challenge_check.png');
+  position: relative;
+}
+
+/* 스탬프 스타일 */
+.stamp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('images/challenge_check.png');
   background-size: cover;
+  display: none; /* 처음에는 숨김 */
+}
+
+/* 체크된 원에 표시될 스탬프 */
+.checked .stamp {
+  display: block;
 }
