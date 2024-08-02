@@ -286,6 +286,12 @@ nav .logo {
 #increaseExerciseMinutes button{
   font-size: 20px;   
 }
+#exerciseSetCounter {
+  font-weight: bold;    
+  font-size: 20px;    
+  margin-bottom: 20px;  
+  align-items: center;
+}
 
 #endRoutine {
   background-color: #402E7A;
@@ -303,3 +309,26 @@ nav .logo {
 #endRoutine:hover {
   background-color:#6D31ED; /* Darker red on hover */
 }
+
+.blocklyMainBackground {
+  fill: #e3cdf0 !important;
+}
+.blocklyToolboxContents{
+  margin-bottom: 20px;
+  gap: 30px; /
+}
+.blocklyToolboxDiv {
+  background-color: white; 
+
+}
+.blocklyToolboxDiv .blocklyTreeIcon,
+.blocklyToolboxDiv .blocklyToolboxItem {
+  background-color: #ffffff; 
+}
+#toolbox-container {
+
+  display: flex;
+  flex-direction: column;
+  gap: 50px; 
+}
+
