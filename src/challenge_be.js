@@ -1,3 +1,86 @@
+        console.error('사용자 정보를 가져오는 중 오류가 발생했습니다!', error);
+        if (error.response) {
+            console.error('Error response data:', error.response.data); // 오류 응답 데이터 로깅
+        }
+        alert('사용자 정보를 가져오는 데 실패했습니다. 다시 시도해 주세요.');
+    }
+}
+
+// 가져온 사용자 정보를 화면에 표시하는 함수
+function displayUserInfo(user) {
+    console.log('User data:', user); // 사용자 데이터 로깅
+
+    const userNameElement = document.getElementById('userName');
+    const userBirthdateElement = document.getElementById('userBirthdate');
+    const userGenderElement = document.getElementById('userGender');
+    const userCountElement = document.getElementById('userCount');
+    const userAgeElement = document.getElementById('userAge'); 
+
+
+    // 디버깅: 각 요소가 null인지 확인
+    if (!userNameElement) {
+        console.error('Element userName not found');
+    }
+    if (!userBirthdateElement) {
+        console.error('Element userBirthdate not found');
+    }
+    if (!userGenderElement) {
+        console.error('Element userGender not found');
+    }
+    if (!userCountElement) {
+        console.error('Element userCount not found');
+    }
+    if (!userAgeElement) { 
+        console.error('Element userAge not found');
+    }
+
+    if (!userNameElement || !userBirthdateElement || !userGenderElement || !userCountElement) {
+        console.error('One or more elements are null:', {
+            userNameElement,
+            userBirthdateElement,
+            userGenderElement,
+            userCountElement,
+            userAgeElement
+
+        });
+        return;
+    }
+
+    userNameElement.textContent = user.name;
+    userBirthdateElement.textContent = `생년월일 : ${user.birthdate}`;
+    userGenderElement.textContent = `성별 : ${user.gender}`;
+    userCountElement.textContent = `챌린지 수 : ${user.count}`;
+    userAgeElement.textContent = `나이 : ${calculateAge(user.birthdate)}`;
+
+
+    // 전체 카운트 수는 고정값으로 설정 (예: 100)
+    const totalCount = 12;
+    const userCount = parseInt(user.count, 10) || 0; // user.count를 정수로 변환, 유효하지 않으면 0으로 설정
+    const percentage = Math.floor((userCount / totalCount) * 100);
+
+    // 진행률을 localStorage에 저장
+    localStorage.setItem('progressPercentage', percentage);
+
+}
+
+// DOM이 완전히 로드된 후에 자바스크립트 코드 실행
+document.addEventListener('DOMContentLoaded', async function() {
+    const userId = 1; // 예시로 userId 1을 사용합니다. 실제로는 로그인 정보 등에서 가져와야 합니다.
+    await getChallengeInfo(userId);
+});
+
+// 나이 계산 함수
+function calculateAge(birthdate) {
+    const birthDate = new Date(birthdate);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     // 세션 스토리지에서 사용자 ID 가져오기
     const userId = sessionStorage.getItem('userId');
