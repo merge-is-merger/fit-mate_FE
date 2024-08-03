@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', async function () {
     // 세션 스토리지에서 사용자 ID 가져오기
     const userId = sessionStorage.getItem('userId') || 1; // 예시로 userId 1을 사용합니다. 실제로는 로그인 정보 등에서 가져와야 합니다.
@@ -10,6 +12,29 @@ document.addEventListener('DOMContentLoaded', async function () {
         alert('로그인이 필요합니다.');
         window.location.href = 'login.html';
     }
+  
+    function updateProgressBar(percentage) {
+  
+        percentage = Math.max(0, Math.min(100, percentage));
+  
+      
+        const containerWidth = document.querySelector('.Rectangle68').offsetWidth;
+        const progressBarWidth = (containerWidth * percentage) / 100;
+  
+        const progressBar = document.querySelector('.Rectangle69');
+        progressBar.style.width = progressBarWidth + 'px';
+  
+        const progressPercent = document.querySelector('.progress-percent');
+        progressPercent.textContent = percentage + '%';
+    }
+  
+      // LocalStorage에서 진행률 값을 가져옴
+      const progressPercentage = localStorage.getItem('progressPercentage');
+      if (progressPercentage !== null) {
+          const dataValue = parseFloat(progressPercentage); // LocalStorage에서 가져온 값을 숫자로 변환
+          updateProgressBar(dataValue);
+      }
+
 
     // 사용자 챌린지 정보를 서버에서 가져오는 함수
     async function getChallengeInfo(userId) {
@@ -70,6 +95,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // 진행률을 localStorage에 저장
         localStorage.setItem('progressPercentage', percentage);
+        updateProgressBar(percentage);
     }
 
     // 나이 계산 함수

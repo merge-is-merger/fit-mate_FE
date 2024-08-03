@@ -1,35 +1,3 @@
-//--------- Percentage Progress
-document.addEventListener("DOMContentLoaded", function() {
-  // Function to update the progress bar and percentage text
-  function updateProgressBar(percentage) {
-
-      percentage = Math.max(0, Math.min(100, percentage));
-
-    
-      const containerWidth = document.querySelector('.Rectangle68').offsetWidth;
-      const progressBarWidth = (containerWidth * percentage) / 100;
-
-      const progressBar = document.querySelector('.Rectangle69');
-      progressBar.style.width = progressBarWidth + 'px';
-
-      const progressPercent = document.querySelector('.progress-percent');
-      progressPercent.textContent = percentage + '%';
-  }
-
-  // // Example data value
-  // const dataValue = 100; // This value can come from an API, form input, etc.
-  // updateProgressBar(dataValue);
-
-    // LocalStorage에서 진행률 값을 가져옴
-    const progressPercentage = localStorage.getItem('progressPercentage');
-    
-    const dataValue = parseFloat(progressPercentage); // LocalStorage에서 가져온 값을 숫자로 변환
-    updateProgressBar(dataValue);
-    
-});
-
-
-
 //--------- Calender
 !function() {
 
