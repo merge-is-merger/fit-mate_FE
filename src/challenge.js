@@ -16,9 +16,16 @@ document.addEventListener("DOMContentLoaded", function() {
       progressPercent.textContent = percentage + '%';
   }
 
-  // Example data value
-  const dataValue = 100; // This value can come from an API, form input, etc.
-  updateProgressBar(dataValue);
+  // // Example data value
+  // const dataValue = 100; // This value can come from an API, form input, etc.
+  // updateProgressBar(dataValue);
+
+    // LocalStorage에서 진행률 값을 가져옴
+    const progressPercentage = localStorage.getItem('progressPercentage');
+    if (progressPercentage !== null) {
+        const dataValue = parseFloat(progressPercentage); // LocalStorage에서 가져온 값을 숫자로 변환
+        updateProgressBar(dataValue);
+    }
 });
 
 

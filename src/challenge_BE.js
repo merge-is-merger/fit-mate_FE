@@ -62,6 +62,15 @@ function displayUserInfo(user) {
     userCountElement.textContent = `챌린지 수 : ${user.count}`;
     userAgeElement.textContent = `나이 : ${calculateAge(user.birthdate)}`;
 
+
+    // 전체 카운트 수는 고정값으로 설정 (예: 100)
+    const totalCount = 12;
+    const userCount = parseInt(user.count, 10) || 0; // user.count를 정수로 변환, 유효하지 않으면 0으로 설정
+    const percentage = Math.floor((userCount / totalCount) * 100);
+
+    // 진행률을 localStorage에 저장
+    localStorage.setItem('progressPercentage', percentage);
+
 }
 
 // DOM이 완전히 로드된 후에 자바스크립트 코드 실행
