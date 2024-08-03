@@ -34,4 +34,5 @@ document.addEventListener('DOMContentLoaded', function() {
     if (challengeNavLink) {
         challengeNavLink.addEventListener('click', checkSessionAndRedirect);
     }
+
 });
