@@ -22,6 +22,7 @@ document.getElementById('signup-form').addEventListener('submit', async function
         });
         console.log(response.data);
         alert('회원가입이 성공적으로 완료되었습니다.');
+        window.location.href = 'index.html';    // 회원가입 완료 후 index.html로 이동
     } catch (error) {
         console.error('회원가입 중 오류가 발생했습니다!', error);
         alert('회원가입에 실패했습니다. 다시 시도해 주세요.');
