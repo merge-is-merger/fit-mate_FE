@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             return;
         }
 
-        userNameElement.textContent = user.name;
+        userNameElement.textContent = user.nickname;
         userBirthdateElement.textContent = `생년월일 : ${user.birthdate}`;
         userGenderElement.textContent = `성별 : ${user.gender}`;
         userCountElement.textContent = `챌린지 수 : ${user.count}`;

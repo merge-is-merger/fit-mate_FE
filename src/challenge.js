@@ -22,10 +22,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // LocalStorage에서 진행률 값을 가져옴
     const progressPercentage = localStorage.getItem('progressPercentage');
-    if (progressPercentage !== null) {
-        const dataValue = parseFloat(progressPercentage); // LocalStorage에서 가져온 값을 숫자로 변환
-        updateProgressBar(dataValue);
-    }
+    
+    const dataValue = parseFloat(progressPercentage); // LocalStorage에서 가져온 값을 숫자로 변환
+    updateProgressBar(dataValue);
+    
 });
 
 
