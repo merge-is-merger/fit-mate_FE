@@ -7,7 +7,7 @@
 import * as Blockly from 'blockly';
 import {blocks} from './blocks/text';
 import {forBlock} from './generators/javascript';
-import {javascriptGenerator} from 'blockly/javascript';
+//import {javascriptGenerator} from 'blockly/javascript';
 import {save, load} from './serialization';
 import {toolbox} from './toolbox';
 import './routine.css';
@@ -156,3 +156,4 @@ function generateRoutine() {
 
 // 작업 영역 변경 시 운동 루틴 자동 생성
 workspace.addChangeListener(generateRoutine);
+

@@ -3,6 +3,7 @@ body {
   margin: 0;
   max-width: 100vw;
   font-family: Arial, sans-serif;
+  overflow:hidden;
 }
 
 .section-container {
@@ -85,17 +86,17 @@ nav .logo {
 
 #blocklyDiv {
   flex-basis: 40%;
-  height: 100%;
+  height: 98%;
   min-width: 300px;
-  padding: 20px;
-  background-color: #f0f0f0;
-  overflow: auto; /* 추가 */
+  padding: 10px; /* 패딩을 줄여서 보라색 테두리 두께 줄이기 */
+  background-color: #402E7A;
+  overflow: auto;
 }
-
 #imageSection {
   flex-basis: 25%;
   padding: 20px;
   overflow: hidden; /* 추가 */
+  background-color:  #ffffff;
 }
 
 #outputPane {
@@ -104,16 +105,17 @@ nav .logo {
   flex-direction: column;
   overflow: auto;
   padding: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f3e6ff;
+  max-height: 100vh; /* 뷰포트 높이에 맞춤 */
 }
-
-
 
 #output {
-  height: 50%;
+  display: none; /* 불필요한 공간을 제거합니다 */
 }
 
+h3 {
+  margin: 10px 0;
+}
 
 .exercise-section {
   width: 100%;
@@ -130,13 +132,18 @@ nav .logo {
   flex: 1;
   margin-right: 5px;
   padding: 10px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
+  background-color: #f3e6ff;
+  border: 3px solid #6D31ED;
   cursor: pointer;
+  font-size: 15px;
+  border-radius: 5px;      
+
+  
+  align-items: center;
 }
 
 .exercise-button:hover {
-  background-color: #ddd;
+  background-color: #6D31ED;
 }
 
 .exercise-content {
@@ -144,7 +151,9 @@ nav .logo {
   max-height: 520px; /* 최대 높이 설정 */
   overflow-y: auto; /* 스크롤 기능 구현 */
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 3px solid #6D31ED;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  
 }
 
 .exercise-content.active {
@@ -160,26 +169,171 @@ nav .logo {
   height: auto;
 }
 
-/* 기존 CSS 파일 끝에 추가 */
-.timer {
-  font-size: 24px;
-  margin: 10px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.timer button {
-  font-size: 18px;
-  margin: 0 10px;
-}
 
 #exerciseTimer, #restTimer {
+  text-align: center;
+  background-color: #f3e6ff; /* 기존 배경색 유지 */
+  border: 6px solid #402E7A; /* 두꺼운 테두리 추가 */
+  border-radius: 15px;
+  padding: 20px;
   margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 약간의 그림자 효과 */
 }
 
-button {
-  margin: 5px;
-  padding: 10px;
-  font-size: 16px;
+.timer {
+  font-weight: bold;    
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; 
+  margin: 20px auto;
+}
+
+
+.timer button {
+  background-color: white; /* Green background */
+  color: #6D31ED;            /* White text */
+  padding: 10px 20px;        /* Padding around the text */
+  border: none;              /* No border */
+  border-radius: 5px;        /* Rounded corners */
+  font-size: 24px;           /* Larger font size for buttons */
+  cursor: pointer;           /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.timer button:hover {
+  background-color:#6D31ED; /* Darker green on hover */
+}
+
+#exerciseSetCounter {
+  font-weight: bold;    
+  font-size: 24px;
+  margin-top: 20px;     
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px; 
+  margin-top: 10px; 
+}
+
+#exerciseTimer .button-container button {
+  background-color: white;
+  padding: 10px 20px;        
+  border: none;           
+  border-radius: 5px;    
+  font-size: 16px;         
+  cursor: pointer;        
+  transition: background-color 0.3s;
+}
+
+#exerciseTimer .button-container button:hover {
+  background-color: #6D31ED; 
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Adjust the gap between buttons if needed */
+  margin-top: 10px; /* Adjust the top margin if needed */
+}
+
+#exerciseTimer button {
+  background-color:#6D31ED; /* Green background */
+  color: white;              /* White text */
+  padding: 10px 20px;        /* Padding around the text */
+  border: none;              /* No border */
+  border-radius: 5px;        /* Rounded corners */
+  font-size: 16px;           /* Font size */
+  cursor: pointer;           /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+#exerciseTimer button:hover {
+  background-color: #402E7A; /* Darker green on hover */
+}
+
+
+#restTimer {
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Adjust the gap between buttons if needed */
+  margin-top: 10px; /* Adjust the top margin if needed */
+}
+
+#restTimer button {
+  background-color: #6D31ED; /* Green background */
+  color: white;              /* White text */
+  padding: 10px 20px;        /* Padding around the text */
+  border: none;              /* No border */
+  border-radius: 5px;        /* Rounded corners */
+  font-size: 16px;           /* Font size */
+  cursor: pointer;           /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+#restTimer button:hover {
+  background-color: #402E7A;
+}
+
+#increaseExerciseMinutes button{
+  font-size: 20px;   
+}
+#exerciseSetCounter {
+  font-weight: bold;    
+  font-size: 20px;    
+  margin-bottom: 20px;  
+  align-items: center;
+}
+
+#endRoutine {
+  background-color: #402E7A;
+  color: white;             /* 텍스트 흰색 */
+  padding: 10px;            /* 텍스트 주변 패딩 */
+  border: none;             /* 테두리 없음 */
+  border-radius: 5px;       /* 모서리 둥글게 */
+  font-size: 16px;          /* 폰트 크기 */
+  cursor: pointer;          /* 호버 시 포인터 커서 */
+  margin: auto;             /* 위쪽 여백 */
+  transition: background-color 0.3s; /* 배경색 전환 부드럽게 */
+  align-items: center;
+  width: 438px;             /* 버튼 너비 */
+}
+
+#endRoutine:hover {
+  background-color:#6D31ED; /* 호버 시 배경색 */
+}
+
+/* 추가된 스타일 */
+#generatedCode {
+  display: none; /* 불필요한 공간을 제거합니다 */
+}
+
+.blocklyMainBackground {
+  fill: #e3cdf0 !important;
+}
+.blocklyToolboxContents{
+  margin-bottom: 20px;
+  gap: 30px; /
+}
+.blocklyToolboxDiv {
+  background-color: white; 
+
+}
+.blocklyToolboxDiv .blocklyTreeIcon,
+.blocklyToolboxDiv .blocklyToolboxItem {
+  background-color: #ffffff; 
+}
+#toolbox-container {
+
+  display: flex;
+  flex-direction: column;
+  gap: 50px; 
 }
