@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="challenge.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/path/to/cdn/jquery.min.js"></script> -->
-    <!-- <script src="progress-bar.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="challenge_BE.js" defer></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
@@ -82,28 +80,28 @@
                     <div class="challenge-content">
                         <div class="title">요가 챌린지</div>
                         <div class="description">매일 30분씩 요가를 실천하여 유연성과 정신적 안정감을 향상시키세요.</div>
-                        <button class="btn" onclick="openModal()">인증하기</button>
+                        <button class="btn upload-button" data-challenge-id="1" onclick="openModal()">인증하기</button>
                     </div>
                 </div>
                 <div class="swiper-slide challenge challenge-2">
                     <div class="challenge-content">
                         <div class="title">스쿼트 챌린지</div>
                         <div class="description">매일 스쿼트를 통해 하체 근육을 강화하세요. 첫날 20회로 시작해, 매일 조금씩 횟수를 늘려보세요.</div>
-                        <button class="btn" onclick="openModal()">인증하기</button>
+                        <button class="btn upload-button" data-challenge-id="2" onclick="openModal()">인증하기</button>
                     </div>
                 </div>
                 <div class="swiper-slide challenge challenge-3">
                     <div class="challenge-content">
                         <div class="title">10,000걸음 걷기 챌린지</div>
                         <div class="description">하루에 10,000걸음을 목표로 걷기를 실천하세요. 일상에서 더 많이 움직이며 건강을 증진시킬 수 있습니다.</div>
-                        <button class="btn" onclick="openModal()">인증하기</button>
+                        <button class="btn upload-button" data-challenge-id="3" onclick="openModal()">인증하기</button>
                     </div>
                 </div>
                 <div class="swiper-slide challenge challenge-4">
                     <div class="challenge-content">
                         <div class="title">하체 운동하기 챌린지</div>
-                        <div class="description">하루에 3세트.</div>
-                        <button class="btn" onclick="openModal()">인증하기</button>
+                        <div class="description">하루에 3세트씩 하는 것을 목표로 해보세요. 횟수는 천천히 늘려가도 좋습니다.</div>
+                        <button class="btn upload-button" data-challenge-id="4" onclick="openModal()">인증하기</button>
                     </div>
                 </div>
             </div>
@@ -116,8 +114,10 @@
                 <span class="close" onclick="closeModal()">&times;</span>
                 <div class="upload-container">
                     <h2>이미지 업로드</h2>
-                    <form action="/upload" method="post" enctype="multipart/form-data">
-                        <input type="file" name="image" accept=".png, .jpg, .jpeg" required>
+                    <form id="upload-form" enctype="multipart/form-data">
+                        <input type="hidden" name="userId" id="userId">
+                        <input type="hidden" name="challengeId" id="challengeId">
+                        <input type="file" name="photo" accept=".png, .jpg, .jpeg" required>
                         <input type="submit" value="업로드">
                     </form>
                 </div>
@@ -180,42 +180,54 @@
         <!-- Reusable Frame with Ellipses -->
         <div class="Frame103" style="left: 122px; top: 425px;">
             <div class="Frame106">
-                <div class="Ellipse35"></div>
-                <div class="Ellipse36"></div>
-                <div class="Ellipse37"></div>
-                <div class="stamp stamp-1"></div> <!-- Added class for stamp -->
-                <div class="stamp stamp-2"></div>
-                <div class="stamp stamp-3"></div>
+                <div class="Ellipse35" id="circle-1-1">
+                    <div class="stamp" id="stamp-1-1"></div>
+                </div>
+                <div class="Ellipse36" id="circle-1-2">
+                    <div class="stamp" id="stamp-1-2"></div>
+                </div>
+                <div class="Ellipse37" id="circle-1-3">
+                    <div class="stamp" id="stamp-1-3"></div>
+                </div>
             </div>
         </div>
         <div class="Frame103" style="left: 122px; top: 625px;">
             <div class="Frame106">
-                <div class="Ellipse35"></div>
-                <div class="Ellipse36"></div>
-                <div class="Ellipse37"></div>
-                <div class="stamp stamp-4"></div>
-                <div class="stamp stamp-5"></div>
-                <div class="stamp stamp-6"></div>
+                <div class="Ellipse35" id="circle-2-1">
+                    <div class="stamp" id="stamp-2-1"></div>
+                </div>
+                <div class="Ellipse36" id="circle-2-2">
+                    <div class="stamp" id="stamp-2-2"></div>
+                </div>
+                <div class="Ellipse37" id="circle-2-3">
+                    <div class="stamp" id="stamp-2-3"></div>
+                </div>
             </div>
         </div>
         <div class="Frame103" style="left: 122px; top: 825px;">
             <div class="Frame106">
-                <div class="Ellipse35"></div>
-                <div class="Ellipse36"></div>
-                <div class="Ellipse37"></div>
-                <div class="stamp stamp-7"></div>
-                <div class="stamp stamp-8"></div>
-                <div class="stamp stamp-9"></div>
+                <div class="Ellipse35" id="circle-3-1">
+                    <div class="stamp" id="stamp-3-1"></div>
+                </div>
+                <div class="Ellipse36" id="circle-3-2">
+                    <div class="stamp" id="stamp-3-2"></div>
+                </div>
+                <div class="Ellipse37" id="circle-3-3">
+                    <div class="stamp" id="stamp-3-3"></div>
+                </div>
             </div>
         </div>
         <div class="Frame107" style="left: 120px; top: 1025px;">
             <div class="Frame106">
-                <div class="Ellipse35"></div>
-                <div class="Ellipse36"></div>
-                <div class="Ellipse37"></div>
-                <div class="stamp stamp-10"></div>
-                <div class="stamp stamp-11"></div>
-                <div class="stamp stamp-12"></div>
+                <div class="Ellipse35" id="circle-4-1">
+                    <div class="stamp" id="stamp-4-1"></div>
+                </div>
+                <div class="Ellipse36" id="circle-4-2">
+                    <div class="stamp" id="stamp-4-2"></div>
+                </div>
+                <div class="Ellipse37" id="circle-4-3">
+                    <div class="stamp" id="stamp-4-3"></div>
+                </div>
             </div>
         </div>
         
