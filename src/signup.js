@@ -15,7 +15,7 @@ document.getElementById('signup-form').addEventListener('submit', async function
     }
 
     try {
-        const response = await axios.post('https://likelion-fitmate.duckdns.org/api/register', formData, {
+        const response = await axios.post('https://likelion-fitmate.shop/api/register', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

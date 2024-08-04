@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             event.preventDefault();
             const formData = new FormData(this);
 
-            axios.post('https://likelion-fitmate.duckdns.org/api/challenge/upload', formData, { withCredentials: true })
+            axios.post('https://likelion-fitmate.shop/api/challenge/upload', formData, { withCredentials: true })
                 .then(response => {
                     if (response.data.status === 'success') {
                         fetchProgress(userId);
