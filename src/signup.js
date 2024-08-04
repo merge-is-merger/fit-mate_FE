@@ -15,7 +15,7 @@ document.getElementById('signup-form').addEventListener('submit', async function
     }
 
     try {
-        const response = await axios.post('http://localhost:8080/api/auth/register', formData, {
+        const response = await axios.post('http://13.209.134.32:8080/api/register', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
