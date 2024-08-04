@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // 사용자 챌린지 정보를 서버에서 가져오는 함수
     async function getChallengeInfo(userId) {
         try {
-            const response = await axios.get(`https://likelion-fitmate.duckdns.org/api/challenge?userId=${userId}`, {
+            const response = await axios.get(`https://likelion-fitmate.shop/api/challenge?userId=${userId}`, {
                 withCredentials: true // 쿠키를 포함하여 요청
             });
 
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     function fetchProgress(userId) {
-        axios.get(`https://likelion-fitmate.duckdns.org/api/challenge?userId=${userId}`)
+        axios.get(`https://likelion-fitmate.shop/api/challenge?userId=${userId}`)
             .then(response => {
                 const count = response.data.user.count;
                 updateCircles(count);
