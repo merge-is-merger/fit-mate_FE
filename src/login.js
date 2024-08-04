@@ -6,7 +6,7 @@ document.getElementById('login-form').addEventListener('submit', async function(
     formData.append('password', document.getElementById('password').value);
 
     try {
-        const response = await axios.post('http://13.209.134.32:8080/api/auth/login', formData, {
+        const response = await axios.post('https://likelion-fitmate.duckdns.org/api/auth/login', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             },

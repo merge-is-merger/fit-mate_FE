@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function checkSessionAndRedirect(event) {
         event.preventDefault(); // 기본 동작 방지
-        axios.get('http://13.209.134.32:8080/api/auth/session/status', {
+        axios.get('https://likelion-fitmate.duckdns.org/api/auth/session/status', {
             withCredentials: true
         })
         .then(response => {
