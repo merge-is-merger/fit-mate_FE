@@ -3,7 +3,7 @@ body {
   margin: 0;
   max-width: 100vw;
   font-family: Arial, sans-serif;
-  overflow:hidden;
+  overflow-x: hidden; /* 수평 스크롤을 숨기지만 수직 스크롤을 허용 */
 }
 
 .section-container {
@@ -111,26 +111,27 @@ nav .logo {
 
 /* 모바일 뷰를 위한 미디어 쿼리 */
 @media (max-width: 768px) {
-    #pageContainer {
-        flex-direction: column;
-        height: auto;
-    }
+  #pageContainer {
+      flex-direction: column;
+      height: auto;
+  }
 
-    #blocklyDiv {
-        flex: 0 0 50vh;
-        width: 100%;
-    }
+  #blocklyDiv {
+      flex: 0 0 50vh;
+      width: 100%;
+  }
 
-    #contentWrapper {
-        flex: 1;
-        height: auto;
-    }
+  #contentWrapper {
+      flex: 1;
+      height: auto;
+  }
 
-    #imageSection, #outputPane {
-        height: auto;
-        min-height: 50vh;
-    }
+  #imageSection, #outputPane {
+      height: auto;
+      min-height: 50vh;
+  }
 }
+
 
 #output {
   display: none; /* 불필요한 공간을 제거합니다 */
