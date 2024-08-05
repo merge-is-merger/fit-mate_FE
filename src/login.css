@@ -74,6 +74,7 @@ nav .logo {
     padding-bottom: 5px; /* Space for the underline */
     display: block; /* Ensure the pseudo-element covers the full width of the link */
 }
+
 #sidemenu a:hover {
     color: #6D31ED; /* Text color on hover */
 }
