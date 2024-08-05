@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     alert('로그인이 필요합니다.');
                     window.location.href = 'login.html';
                 } else {
-                    window.location.href = 'challenge.html';
+                    setTimeout(() => {
+                        window.location.href = 'challenge.html';
+                    }, 100); // 100ms 지연 후 페이지 이동
                 }
             } else {
                 window.location.href = 'login.html'; // 세션이 유효하지 않은 경우 로그인 페이지로 이동
