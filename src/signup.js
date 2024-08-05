@@ -15,7 +15,7 @@ document.getElementById('signup-form').addEventListener('submit', async function
     }
 
     try {
-        const response = await axios.post('https://port-0-fitmate-lzfthvw51f8ed8b2.sel4.cloudtype.app/api/register', formData, {
+        const response = await axios.post('https://port-0-fitmate-lzfthvw51f8ed8b2.sel4.cloudtype.app/api/auth/register', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
