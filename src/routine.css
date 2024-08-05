@@ -109,6 +109,29 @@ nav .logo {
   max-height: 100vh; /* 뷰포트 높이에 맞춤 */
 }
 
+/* 모바일 뷰를 위한 미디어 쿼리 */
+@media (max-width: 768px) {
+    #pageContainer {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #blocklyDiv {
+        flex: 0 0 50vh;
+        width: 100%;
+    }
+
+    #contentWrapper {
+        flex: 1;
+        height: auto;
+    }
+
+    #imageSection, #outputPane {
+        height: auto;
+        min-height: 50vh;
+    }
+}
+
 #output {
   display: none; /* 불필요한 공간을 제거합니다 */
 }
