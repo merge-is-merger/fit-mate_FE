@@ -6,7 +6,7 @@ document.getElementById('login-form').addEventListener('submit', async function(
     formData.append('password', document.getElementById('password').value);
 
     try {
-        const response = await axios.post('https://likelion-fitmate.shop/api/auth/login', formData, {
+        const response = await axios.post('https://port-0-fitmate-lzfthvw51f8ed8b2.sel4.cloudtype.app/api/auth/login', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             },

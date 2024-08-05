@@ -13,5 +13,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server running at http://13.209.134.32:${port}/`);
+    console.log(`Server running at https://port-0-fitmate-lzfthvw51f8ed8b2.sel4.cloudtype.app:${port}/`);
 });

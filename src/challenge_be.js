@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // 사용자 챌린지 정보를 서버에서 가져오는 함수
     async function getChallengeInfo(userId) {
         try {
-            const response = await axios.get(`https://likelion-fitmate.shop/api/challenge?userId=${userId}`, {
+            const response = await axios.get(`https://port-0-fitmate-lzfthvw51f8ed8b2.sel4.cloudtype.app/api/challenge?userId=${userId}`, {
                 withCredentials: true // 쿠키를 포함하여 요청
             });
 
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     function fetchProgress(userId) {
-        axios.get(`https://likelion-fitmate.shop/api/challenge?userId=${userId}`)
+        axios.get(`https://port-0-fitmate-lzfthvw51f8ed8b2.sel4.cloudtype.app/api/challenge?userId=${userId}`)
             .then(response => {
                 const count = response.data.user.count;
                 updateCircles(count);
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             event.preventDefault();
             const formData = new FormData(this);
 
-            axios.post('https://likelion-fitmate.shop/api/challenge/upload', formData, { withCredentials: true })
+            axios.post('https://port-0-fitmate-lzfthvw51f8ed8b2.sel4.cloudtype.app/api/challenge/upload', formData, { withCredentials: true })
                 .then(response => {
                     if (response.data.status === 'success') {
                         fetchProgress(userId);
